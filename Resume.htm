@@ -1,0 +1,421 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>رزومه تکمیلی</title>
+  <!-- فونت فارسی وزیرمتن -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* =========================================================
+       ۱) متغیرهای طراحی — فقط همین‌جا را برای تغییر ظاهر ویرایش کن
+       ========================================================= */
+    :root {
+      --bg:            #f7f6f3;
+      --surface:       #ffffff;
+      --text:          #16181d;
+      --text-soft:     #4a4d55;
+      --muted:         #8a8d94;
+      --line:          #e6e4df;
+      --accent:        #c2410c;
+      --accent-soft:   rgba(194, 65, 12, .10);
+
+      --radius:        14px;
+      --maxw:          780px;
+
+      --shadow:        0 1px 2px rgba(0,0,0,.03), 0 8px 24px rgba(0,0,0,.04);
+      --shadow-hover:  0 2px 4px rgba(0,0,0,.05), 0 16px 40px rgba(0,0,0,.08);
+    }
+
+    /* =========================================================
+       ۲) پایه
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Vazirmatn", Tahoma, system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.9;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .link {
+      color: var(--text);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 1px;
+      transition: color .2s ease, border-color .2s ease;
+    }
+    .link:hover {
+      color: var(--accent);
+      border-color: var(--text);
+    }
+
+    /* =========================================================
+       ۳) چیدمان صفحه
+       ========================================================= */
+    .page {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 72px 24px 96px;
+    }
+
+    /* =========================================================
+       ۴) سربرگ
+       ========================================================= */
+    .hero { margin-bottom: 48px; }
+
+    .hero__eyebrow {
+      margin: 0 0 12px;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .hero__name {
+      margin: 0;
+      font-size: clamp(1.9rem, 6vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -.01em;
+    }
+
+    /* =========================================================
+       ۵) نوار تب (pill) — جایگزین سه کارت
+       ========================================================= */
+    .tabs {
+      display: flex;
+      align-items: stretch;
+      gap: 4px;
+      padding: 6px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      margin-bottom: 96px;
+    }
+
+    .tab {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 10px;
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      border-radius: 999px;
+      text-align: center;
+      white-space: nowrap;
+      transition: background-color .2s ease, color .2s ease;
+    }
+
+    .tab:hover {
+      color: var(--text);
+      background: rgba(0, 0, 0, .03);
+    }
+
+    .tab.is-active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       ۶) بخش‌های محتوا
+       ========================================================= */
+    .section {
+      padding-top: 56px;
+      scroll-margin-top: 24px;
+    }
+    .section:first-of-type { padding-top: 0; }
+
+    .section + .section {
+      margin-top: 72px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section__head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .section__num {
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--accent);
+    }
+
+    .section__title {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -.005em;
+    }
+
+    /* =========================================================
+       ۷) لیست و متن
+       ========================================================= */
+    .list {
+      margin: 0 0 20px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      position: relative;
+      padding-right: 24px;
+      margin-bottom: 14px;
+      color: var(--text-soft);
+    }
+
+    .list li::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: .95em;
+      width: 12px;
+      height: 1px;
+      background: var(--accent);
+      opacity: .6;
+    }
+
+    /* لیست تودرتو (زیرشاخه) */
+    .list .list {
+      margin: 8px 0 4px;
+      padding: 0;
+    }
+
+    .list .list li {
+      padding-right: 20px;
+      margin-bottom: 6px;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    .list .list li::before {
+      width: 8px;
+      background: var(--muted);
+      opacity: .5;
+    }
+
+    .text {
+      margin: 0 0 16px;
+      color: var(--text-soft);
+    }
+
+    .tag {
+      display: inline-block;
+      margin-inline-start: 8px;
+      padding: 2px 10px;
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      vertical-align: middle;
+    }
+
+    /* =========================================================
+       ۸) ریسپانسیو
+       ========================================================= */
+    @media (max-width: 720px) {
+      .page { padding: 48px 20px 72px; }
+      .hero { margin-bottom: 36px; }
+
+      .tabs {
+        gap: 2px;
+        padding: 5px;
+        margin-bottom: 64px;
+      }
+      .tab {
+        padding: 12px 6px;
+        font-size: .82rem;
+      }
+
+      .section { padding-top: 44px; }
+      .section + .section { margin-top: 56px; }
+    }
+
+    @media (max-width: 380px) {
+      .tab { font-size: .75rem; padding: 12px 4px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <!-- ===== سربرگ ===== -->
+    <header class="hero">
+      <p class="hero__eyebrow">رزومه تکمیلی</p>
+
+
+       <h1 class="hero__name">مانی بورستانی</h1>
+
+    </header>
+
+    <!-- ===== نوار تب ===== -->
+    <nav class="tabs" aria-label="بخش‌های رزومه">
+      <a class="tab" href="#content">تولید محتوا / گرافیکی</a>
+      <a class="tab" href="#academic">آموزشی / پژوهشی</a>
+      <a class="tab" href="#translation">ترجمه</a>
+    </nav>
+
+    <!-- ===== بخش ۱: تولید محتوا / گرافیکی ===== -->
+    <section id="content" class="section">
+      <header class="section__head">
+        <span class="section__num">۰۱</span>
+        <h2 class="section__title">تولید محتوا / گرافیکی</h2>
+      </header>
+
+     <ul class="list">
+        <li>
+          مدیریت و تولید محتوا برای پیج
+          <a class="link" href="https://www.instagram.com/minus_one_reader/" target="_blank" rel="noopener">منفی یک</a>
+        </li>
+        <li>
+          تولید محتوا برای پیج
+          <a class="link" href="https://www.instagram.com/atu.sociopoliticalstudies/" target="_blank" rel="noopener">انجمن علمی مطالعات اجتماعی و سیاسی دانشگاه علامه طباطبایی</a>
+        </li>
+      </ul>
+
+      <p class="text">
+        تمام پست‌های پیج اول، و پست‌های پیج دوم از مهر ۱۴۰۴ به بعد، توسط من طراحی
+        شده‌اند؛ از جمله محتوای متنی، عناصر گرافیکی و تصویر خروجی.
+      </p>
+
+      <p class="text">
+        مسلط به ابزارهای ساخت عناصر گرافیکی تصویریِ مناسب شبکه‌های مجازی
+        (مثل کانوا) و ابزارهای هوش مصنوعی مرتبط، برای ساخت قالب‌های سفارشی و
+        متناسب با برند.
+      </p>
+    </section>
+
+    <!-- ===== بخش ۲: آموزشی / پژوهشی ===== -->
+    <section id="academic" class="section">
+      <header class="section__head">
+        <span class="section__num">۰۲</span>
+        <h2 class="section__title">آموزشی / پژوهشی</h2>
+      </header>
+
+      <ul class="list">
+        <li>
+          رتبه اول از منظر معدل بین تمام فارغ‌التحصیلان رشته برنامه‌ریزی اجتماعی
+          و تعاون، و دانشکده علوم اجتماعی دانشگاه علامه طباطبایی، ورودی ۱۴۰۱.
+        </li>
+
+        <li>
+          دو دوره دبیر انجمنِ علمی در دانشگاه علامه طباطبایی:
+          <ul class="list">
+            <li>یک دوره انجمن علمی برنامه‌ریزی اجتماعی</li>
+            <li>یک دوره انجمن علمی مطالعات اجتماعی و سیاسی</li>
+          </ul>
+        </li>
+
+        <li>
+          یک دوره عضویت عادیِ انجمن علمی در دانشگاه علامه طباطبایی (انجمن علمی
+          برنامه‌ریزی اجتماعی).
+        </li>
+
+        <li>
+          برگزاری و تسهیل‌گری دوره‌های آموزشی مربوط به نظریه‌های جامعه‌شناسی
+          و فلسفه علوم اجتماعی.
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== بخش ۳: ترجمه ===== -->
+   <section id="translation" class="section">
+      <header class="section__head">
+        <span class="section__num">۰۳</span>
+        <h2 class="section__title">ترجمه</h2>
+      </header>
+
+      <ul class="list">
+        <li>
+          ترجمه مقالات مختلف تخصصی در سایت
+          <a class="link" href="https://engare.net/author/m-boorestani/" target="_blank" rel="noopener">انگاره</a>
+        </li>
+        <li>
+          ترجمه کتاب «در آغوش گرفتن ازخودبیگانگی»
+          <span class="tag">در دست بررسی برای انتشار</span>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script>
+    /* =========================================================
+       ۱) اسکرول نرم + به‌روزرسانی آدرس هنگام کلیک روی تب‌ها
+       ========================================================= */
+    const tabs = document.querySelectorAll(".tab");
+    const sections = document.querySelectorAll(".section");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", (event) => {
+        const targetId = tab.getAttribute("href");
+        const target = document.querySelector(targetId);
+        if (!target) return;
+
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", targetId);
+      });
+    });
+
+    /* =========================================================
+       ۲) Scroll Spy — تبِ بخشِ در حال مشاهده فعال می‌شود
+       ========================================================= */
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const currentId = "#" + entry.target.id;
+
+          tabs.forEach((tab) => {
+            const isActive = tab.getAttribute("href") === currentId;
+            tab.classList.toggle("is-active", isActive);
+          });
+        });
+      },
+      {
+        rootMargin: "-30% 0px -60% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>
